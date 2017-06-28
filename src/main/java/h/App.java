@@ -13,17 +13,14 @@ public class App {
      */
     public static void main(String[] args) {
         int sum0 = 0, sum1 = 0;
-        int[] arr = new int[10];
-        int[] res = new int[1022];
-        for (int i = 0; i < 10; i++) {
-            arr[i] = new Random().nextInt(10);
-        }
-        for (int i = 0; i < 10; i++) {
+        int[] arr = {1, 2, 3, 5};
+        int[] res = new int[15];
+        for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }
-        for (int n = 1; n < 1023; n++) {
+        for (int n = 1; n <= 15; n++) {
 
-            for (int b = 0; b < 10; b++) {
+            for (int b = 0; b < arr.length; b++) {
 //                System.out.println(getBit(i, b));
                 if (getBit(n, b) == 0) {
                     sum0 += arr[b];
@@ -32,8 +29,9 @@ public class App {
                 }
             }
             res[n-1] = Math.abs(sum1 - sum0);
+            sum0 = sum1 = 0;
         }
-        System.out.println(IntStream.of(res).min().getAsInt());
+        System.out.println("\n" + IntStream.of(res).min().getAsInt());
     }
 
     public static int getBit(int n, int b) {
