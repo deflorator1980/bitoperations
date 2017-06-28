@@ -4,25 +4,26 @@ import java.util.Random;
 import java.util.stream.IntStream;
 
 /**
- * Created by a on 27.06.17.
+ * Решаем перебором. Длину массива -- в двоичное представление: 0 -первая группа
+ * 1 - вторая
  */
 public class App {
-    private final static int QUANTITY = 5;
+    private final static int QUANTITY = 4;
+    private final static int NUMBER = 15; // Integer.parseInt("1111",2)
 
     public static void main(String[] args) {
         int sum0 = 0, sum1 = 0;
         int[] arr = new int[QUANTITY];
-        int[] res = new int[31];
+        int[] res = new int[NUMBER];            //
         for (int i = 0; i < QUANTITY; i++) {
             arr[i] = new Random().nextInt(10);
         }
         for (int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + " ");
         }
-        for (int n = 1; n <= 31; n++) {
+        for (int n = 1; n <= NUMBER; n++) {
 
             for (int b = 0; b < arr.length; b++) {
-//                System.out.println(getBit(i, b));
                 if (getBit(n, b) == 0) {
                     sum0 += arr[b];
                 } else if (getBit(n, b) == 1) {
