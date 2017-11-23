@@ -4,6 +4,8 @@ object AppS {
   def main(args: Array[String]) {
     var sum0, sum1 = 0
     println(getBit(1, 0))
+    val arr = Array.fill(quantity){scala.util.Random.nextInt(10)}
+    arr.foreach({a => print(a + " ")})
   }
 
   def getBit (n_b: Int, n_d: Int) =  {
@@ -11,4 +13,3 @@ object AppS {
     x + quantity
   }
 }
-//todo scala.util.Random.nextInt(10)
