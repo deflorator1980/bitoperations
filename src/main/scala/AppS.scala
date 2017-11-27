@@ -1,6 +1,6 @@
 object AppS {
-  val quantity = 4
-  val number_dec = 15
+  val quantity = 5
+  val number_dec = 31                 // Integer.parseInt("11111",2)
   def main(args: Array[String]) {
     var sum0, sum1 = 0
     val arr = Array.fill(quantity){scala.util.Random.nextInt(10)}
