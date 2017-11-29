@@ -1,10 +1,10 @@
 object AppS {
-  val quantity = 5
-  val number_dec = 31                 // Integer.parseInt("11111",2)
+  val quantity = 4
+  val number_dec = 15                 // Integer.parseInt("11111",2)
   def main(args: Array[String]) {
     var sum0, sum1 = 0
-    // val arr = Array.fill(quantity){scala.util.Random.nextInt(10)}
-    val arr = Array(4,5,7,1)
+    val arr = Array.fill(quantity){scala.util.Random.nextInt(10)}
+    // val arr = Array(4,5,7,1)
     val res = new Array[Int](number_dec)
     arr.foreach({a => print(a + " ")})
 
@@ -19,8 +19,8 @@ object AppS {
       res(n_dec-1) = Math.abs(sum1 - sum0)
       sum0 = 0; sum1 = 0
     }
-    res.foreach({r => print(r + " ")})
     println("\n" + res.reduce(_ min _))
+    // res.foreach({r => print(r + " ")})
   }
 
   def getBit (n_dec: Int, n_bin: Int) =  {

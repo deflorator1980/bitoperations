@@ -7,8 +7,8 @@ def get_bit(n_dec, n_bin):
 quantity = 4
 number_dec = 15
 sum0 = sum1 = 0
-# arr = [random.randint(0, 9) for r in range(quantity)]
-arr = [4,5,7,1]
+arr = [random.randint(0, 9) for r in range(quantity)]
+# arr = [4,5,7,1]
 res = []
 print (arr)
 
@@ -21,8 +21,7 @@ for n_dec in range (1, number_dec + 1):
             sum1 += arr[n_bin]
     
     res.append(abs(sum1- sum0))
+    sum0 = sum1 = 0
 
-print(res)
 print(min(res))
-# todo always zero
 
