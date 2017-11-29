@@ -5,7 +5,7 @@ def get_bit(n_dec, n_bin):
 
 
 quantity = 4
-number_dec = 15
+number_dec = 15                     #int("1111",2)
 sum0 = sum1 = 0
 arr = [random.randint(0, 9) for r in range(quantity)]
 # arr = [4,5,7,1]
