@@ -44,3 +44,4 @@ public class App {
         return (n_dec >> n_bin) & 1;
     }
 }
+//todo IntStream.range(0,67108863).forEach(res::add)
