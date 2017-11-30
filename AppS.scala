@@ -5,8 +5,8 @@ object AppS {
   val number_dec = 15                 
   def main(args: Array[String]) {
     var sum0, sum1 = 0
-    // val arr = Array.fill(quantity){scala.util.Random.nextInt(10)}
-    val arr = Array(4,5,7,1)
+    val arr = Array.fill(quantity){scala.util.Random.nextInt(10)}
+    // val arr = Array(4,5,7,1)
     // val arr = Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 10)
     // val arr = Array(4)
     val res = new Array[Int](number_dec)
