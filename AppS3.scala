@@ -1,5 +1,5 @@
 import java.util.Calendar
-object AppS2 {
+object AppS3 {
     def main(args: Array[String]) {
         val quantity = Integer.parseInt(args(0))
         val numberDec = Math.pow(2, quantity).toInt -1
