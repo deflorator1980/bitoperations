@@ -3,6 +3,7 @@ object AppS3 {
     def main(args: Array[String]) {
         val quantity = Integer.parseInt(args(0))
         val numberDec = Math.pow(2, quantity).toInt -1
+        // val numberDec = BigInt(2).pow(quantity) - 1
         println(numberDec)
         var sum0, sum1 = 0
         val arr = Array.fill(quantity){scala.util.Random.nextInt(10)}
@@ -13,11 +14,13 @@ object AppS3 {
         val start = Calendar.getInstance.getTime
         println("\n" + start)
 
-        for (n_dec <- 1 to numberDec) {
+        for (nDec <- 1 to numberDec) {
+        // var nDec = BigInt(1)
+        // while(nDec <= numberDec ){
           for (n_bin <- 0 until arr.length) {
-                if (getBit(n_dec, n_bin) == 0) {
+                if (getBit(nDec, n_bin) == 0) {
                     sum0 += arr(n_bin)
-                } else if (getBit(n_dec, n_bin) == 1) {
+                } else if (getBit(nDec, n_bin) == 1) {
                     sum1 += arr(n_bin)
                 }
             }
@@ -29,12 +32,14 @@ object AppS3 {
             }
 
             sum0 = 0; sum1 = 0
+            // nDec += 1
         }
         println(difference)
         val stop = Calendar.getInstance.getTime
         println(stop)
     }
     def getBit (nDec: Int, nBin: Int) =  {
+    // def getBit (nDec: BigInt, nBin: Int) =  {
         val x = (nDec >> nBin) & 1
         x
     }
