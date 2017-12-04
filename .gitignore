@@ -13,3 +13,5 @@ out/*
 .project
 .vscode/
 project/
+*.log
+metastore_db/
