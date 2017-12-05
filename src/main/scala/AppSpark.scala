@@ -56,5 +56,5 @@ object AppSpark {
 }    
 
 // arrs.count
-// $SPARK_HOME/bin/spark-submit --class "AppSpark" target/scala-2.11/appspark_2.11-1.0.jar 4
+// $SPARK_HOME/bin/spark-submit --class "AppSpark" target/scala-2.11/appspark_2.11-1.0.jar 8
 // zipWithIndex.map(_.swap).lookup(14)
