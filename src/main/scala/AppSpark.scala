@@ -24,7 +24,8 @@ object AppSpark {
         // for (nDec <- 1 to numberDec) {
         var nDec = BigInt(1)
         while(nDec <= numberDec.toBigInt ){
-          for (nBin <- 0 until arr.length) {
+        //   for (nBin <- 0 until arr.length) {
+          for (nBin <- 0 until arrs.count.toInt) {
                 if (getBit(nDec, nBin) == 0) {
                     sum0 += arr(nBin)
                 } else if (getBit(nDec, nBin) == 1) {
@@ -54,4 +55,6 @@ object AppSpark {
     }
 }    
 
+// arrs.count
 // $SPARK_HOME/bin/spark-submit --class "AppSpark" target/scala-2.11/appspark_2.11-1.0.jar 4
+// zipWithIndex.map(_.swap).lookup(14)
