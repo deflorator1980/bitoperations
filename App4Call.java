@@ -23,25 +23,6 @@ public class App4Call {
 
         System.out.println("\n" + new Date());
 
-        // for (long nDec = 1; nDec <= numberDec; nDec++) {
-
-        //     for (int nBin = 0; nBin < arr.length; nBin++) {
-        //         if (getBit(nDec, nBin) == 0) {
-        //             sum0 += arr[nBin];
-        //         } else if (getBit(nDec, nBin) == 1) {
-        //             sum1 += arr[nBin];
-        //         }
-        //     }
-
-        //     long dif = Math.abs(sum1 - sum0);
-
-        //     if (dif < diffenece) {
-        //         diffenece = dif;
-        //     }
-
-        //     sum0 = sum1 = 0;
-        // }
-
         ExecutorService exec = Executors.newFixedThreadPool(4);
 
         Callable<Integer> callable = new CallCount(numberDec, arr);
@@ -54,9 +35,6 @@ public class App4Call {
         
     }
 
-    // public static long getBit(long nDec, long nBin) {
-    //     return (nDec >> nBin) & 1;
-    // }
 }
 
 class CallCount implements Callable {

@@ -1,49 +1,15 @@
 import java.util.Random;
 import java.util.stream.IntStream;
-import java.sql.CallableStatement;
 import java.util.Date;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Callable;
 import java.util.concurrent.*;
 
 public class AppCall {
     public static void main(String[] args) throws Exception {
-        int quantity = Integer.parseInt(args[0]);
-        int[] arr = new int[quantity];
-
-        ExecutorService exec = Executors.newFixedThreadPool(4);
-        // exec.execute(new Counter(quantity, arr));
-        // exec.execute(new Counter(quantity, arr));
-        // exec.execute(new Counter(quantity, arr));
-        // exec.execute(new Counter(quantity, arr));
-        // exec.shutdown();
-
-        Callable<Integer> callable = new CallCount(quantity);
-        Future<Integer> future = exec.submit(callable);
-        System.out.println(future.get());
-        exec.shutdown();
-        
-    }
-
-    public static int getBit(int n_dec, int n_bin) {
-        return (n_dec >> n_bin) & 1;
-    }
-}
-
-class Counter extends Thread {
-    private int quantity;
-    private int[] arr; 
-    Counter(int quantity, int arr[]) {
-        this.quantity = quantity;
-        this.arr = arr;
-    }
-
-    public void run() {
-
-        int numberDec = (int)Math.pow(2, quantity) - 1;
+        long quantity = Long.parseLong(args[0]);
+        long[] arr = new long[(int)quantity];
+        long numberDec = (long)Math.pow(2, quantity) - 1;
         System.out.println(numberDec);
-        int sum0 = 0, sum1 = 0;
+        long sum0 = 0, sum1 = 0;
         for (int i = 0; i < quantity; i++) {
             arr[i] = new Random().nextInt(10);
         }
@@ -53,46 +19,71 @@ class Counter extends Thread {
             System.out.print(arr[i] + " ");
         }
 
-        int diffenece = Integer.MAX_VALUE;  
+        long diffenece = Long.MAX_VALUE;  
 
         System.out.println("\n" + new Date());
 
-        for (int n_dec = 1; n_dec <= numberDec; n_dec++) {
+        ExecutorService exec = Executors.newFixedThreadPool(4);
 
-            for (int n_bin = 0; n_bin < arr.length; n_bin++) {
-                if (getBit(n_dec, n_bin) == 0) {
-                    sum0 += arr[n_bin];
-                } else if (getBit(n_dec, n_bin) == 1) {
-                    sum1 += arr[n_bin];
+        // Callable<Integer> callable = new CallCount(arr, 1, numberDec);
+        Callable<Integer> callable = new CallCount(arr, 1, numberDec/2);
+        Callable<Integer> callable2 = new CallCount(arr, numberDec/2, numberDec);
+        Future<Integer> future = exec.submit(callable);
+        Future<Integer> future2 = exec.submit(callable2);
+        // diffenece = future.get();
+        System.out.println(future.get());
+        System.out.println(future2.get());
+
+        System.out.println(new Date());
+        exec.shutdown();
+        
+    }
+
+}
+
+class CallCount implements Callable {
+
+    private long numberDec;
+    private long[] arr;
+    // private  long diffenece = Long.MAX_VALUE;
+    private  long diffenece = 0;
+    private long sum0 = 0, sum1 = 0;
+    private long start;
+    private long stop;
+
+    public CallCount(long[] arr, long start, long stop) {
+        this.numberDec = numberDec;
+        this.arr = arr;
+        this.start = start;
+        this.stop = stop;
+    }
+
+    public Integer call() {
+        for (long nDec = start; nDec <= stop; nDec++) {
+            
+            for (int nBin = 0; nBin < arr.length; nBin++) {
+                if (getBit(nDec, nBin) == 0) {
+                    sum0 += arr[nBin];
+                } else if (getBit(nDec, nBin) == 1) {
+                    sum1 += arr[nBin];
                 }
             }
 
-            int dif = Math.abs(sum1 - sum0);
+            long dif = Math.abs(sum1 - sum0);
 
-            if (dif < diffenece) {
+            // if (dif < diffenece) {
+            if (dif > diffenece) {
+                System.out.println(Thread.currentThread().getName() + " " + dif);
                 diffenece = dif;
             }
 
             sum0 = sum1 = 0;
         }
-        System.out.println(diffenece);
-        System.out.println(new Date());
+        return (int)diffenece;
     }
 
-    public int getBit(int n_dec, int n_bin) {
-        return (n_dec >> n_bin) & 1;
-    }
-}
-
-class CallCount implements Callable {
-
-    private int value;
-
-    public CallCount(int value) {
-        this.value = value;
+    public long getBit(long nDec, long nBin) {
+        return (nDec >> nBin) & 1;
     }
 
-    public Integer call() {
-        return value * 2;
-    }
 }
