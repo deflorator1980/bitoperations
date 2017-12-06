@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class App4 {
     public static void main(String[] args) {
-        long quantity = Long.parseLong(args[0]);
-        long[] arr = new long[(int)quantity];
+        int quantity = Integer.parseInt(args[0]);
+        long[] arr = new long[quantity];
         long numberDec = (long)Math.pow(2, quantity) - 1;
         System.out.println(numberDec);
         long sum0 = 0, sum1 = 0;
