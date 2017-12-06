@@ -1,38 +1,11 @@
 import java.util.Random;
 import java.util.stream.IntStream;
 import java.util.Date;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
-public class AppRun {
+public class App4 {
     public static void main(String[] args) {
         long quantity = Long.parseLong(args[0]);
         long[] arr = new long[(int)quantity];
-
-        ExecutorService exec = Executors.newFixedThreadPool(1);
-        // exec.execute(new Counter(quantity, arr));
-        // exec.execute(new Counter(quantity, arr));
-        // exec.execute(new Counter(quantity, arr));
-        exec.execute(new Counter(quantity, arr));
-        exec.shutdown();
-        
-    }
-
-    public static long getBit(long nDec, long nBin) {
-        return (nDec >> nBin) & 1;
-    }
-}
-
-class Counter extends Thread {
-    private long quantity;
-    private long[] arr; 
-    Counter(long quantity, long arr[]) {
-        this.quantity = quantity;
-        this.arr = arr;
-    }
-
-    public void run() {
-
         long numberDec = (long)Math.pow(2, quantity) - 1;
         System.out.println(numberDec);
         long sum0 = 0, sum1 = 0;
@@ -69,11 +42,10 @@ class Counter extends Thread {
         }
         System.out.println(diffenece);
         System.out.println(new Date());
+        
     }
 
-    public long getBit(long nDec, long nBin) {
+    public static long getBit(long nDec, long nBin) {
         return (nDec >> nBin) & 1;
     }
 }
-
-// max 2**62 
