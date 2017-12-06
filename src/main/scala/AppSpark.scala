@@ -5,22 +5,25 @@ import java.util.Calendar
 
 object AppSpark {
     def main(args: Array[String]) {
+        val quantity = Integer.parseInt(args(0))
+        val arr = Array.fill(quantity){scala.util.Random.nextInt(10)}
+        scala.tools.nsc.io.File("arr.txt").writeAll(arr.mkString(" "))
+        val numberDec = BigDecimal(2).pow(quantity) - 1
+
         val sc = new SparkContext(new SparkConf().setAppName("AppSpark").setMaster("local[4]"))
         val arrs = sc.textFile("arr.txt").flatMap(l => l.split(" "))
         // val arr = arrs.collect.map(n => n.toInt)
         val arrn = arrs.zipWithIndex.map(_.swap)
 
-        val quantity = Integer.parseInt(args(0))
-        val numberDec = BigDecimal(2).pow(quantity) - 1
         println(numberDec)
         var sum0, sum1 = 0
-        // val arr = Array.fill(quantity){scala.util.Random.nextInt(10)}
-        // arr.foreach({a => print(a + " ")})
 
         var difference = Double.PositiveInfinity
 
         val start = Calendar.getInstance.getTime
         println("\n" + start)
+        scala.tools.nsc.io.File("result.txt").writeAll(start.toString + "\n")
+        scala.tools.nsc.io.File("result.txt").appendAll(arr.mkString(" ") + "\n")
 
         // for (nDec <- 1 to numberDec) {
         var nDec = BigInt(1)
@@ -47,8 +50,10 @@ object AppSpark {
             nDec += 1
         }
         println(difference.toInt)
+        scala.tools.nsc.io.File("result.txt").appendAll(difference.toInt + "\n")
         val stop = Calendar.getInstance.getTime
         println(stop)
+        scala.tools.nsc.io.File("result.txt").appendAll(stop.toString)
 
         sc.stop
     }
