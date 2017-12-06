@@ -27,7 +27,7 @@ public class AppCall {
 
         // Callable<Integer> callable = new CallCount(arr, 1, numberDec);
         Callable<Integer> callable = new CallCount(arr, 1, numberDec/2);
-        Callable<Integer> callable2 = new CallCount(arr, numberDec/2, numberDec);
+        Callable<Integer> callable2 = new CallCount(arr, numberDec/2 + 1, numberDec);
         Future<Integer> future = exec.submit(callable);
         Future<Integer> future2 = exec.submit(callable2);
         // diffenece = future.get();
@@ -45,8 +45,9 @@ class CallCount implements Callable {
 
     private long numberDec;
     private long[] arr;
-    // private  long diffenece = Long.MAX_VALUE;
-    private  long diffenece = 0;
+    private  long diffenece = Long.MAX_VALUE;
+    // private  long diffenece = 0;
+
     private long sum0 = 0, sum1 = 0;
     private long start;
     private long stop;
@@ -71,8 +72,8 @@ class CallCount implements Callable {
 
             long dif = Math.abs(sum1 - sum0);
 
-            // if (dif < diffenece) {
-            if (dif > diffenece) {
+            if (dif < diffenece) {
+            // if (dif > diffenece) {
                 System.out.println(Thread.currentThread().getName() + " " + dif);
                 diffenece = dif;
             }
