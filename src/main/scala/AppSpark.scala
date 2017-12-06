@@ -10,7 +10,7 @@ object AppSpark {
         scala.tools.nsc.io.File("arr.txt").writeAll(arr.mkString(" "))
         val numberDec = BigDecimal(2).pow(quantity) - 1
 
-        val sc = new SparkContext(new SparkConf().setAppName("AppSpark").setMaster("local[4]"))
+        val sc = new SparkContext(new SparkConf().setAppName("AppSpark").setMaster("local[1]"))
         val arrs = sc.textFile("arr.txt").flatMap(l => l.split(" "))
         // val arr = arrs.collect.map(n => n.toInt)
         val arrn = arrs.zipWithIndex.map(_.swap)

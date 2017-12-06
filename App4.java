@@ -1,6 +1,8 @@
 import java.util.Random;
 import java.util.stream.IntStream;
 import java.util.Date;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class App4 {
     public static void main(String[] args) {
@@ -41,10 +43,29 @@ public class App4 {
         }
         System.out.println(diffenece);
         System.out.println(new Date());
+        new Hu().hu();
+        ExecutorService exec = Executors.newFixedThreadPool(1);
+        // exec.execute(new Hu());
+        // exec.execute(new Hu());
+        // exec.execute(new Hu());
+        exec.execute(new Hu());
+        exec.shutdown();
         
     }
 
     public static int getBit(int n_dec, int n_bin) {
         return (n_dec >> n_bin) & 1;
+    }
+}
+
+class Hu extends Thread{
+    public void hu(){
+        System.out.println("HU!");
+    }
+
+    public void run() {
+        while(true) {
+            System.out.println("RUN!");
+        }
     }
 }
