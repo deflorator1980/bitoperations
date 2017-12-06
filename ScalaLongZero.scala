@@ -1,5 +1,5 @@
 import java.util.Date
-object AppS5 {
+object ScalaLongZero {
     def main(args: Array[String]) {
         val quantity = args(0).toInt
         val numberDec = Math.pow(2, quantity).toLong -1
@@ -23,6 +23,12 @@ object AppS5 {
             }
 
             var dif = Math.abs(sum1 - sum0)
+
+            if (dif == 0) {
+                println("zero " + dif)
+                println(new Date)
+                System.exit(0)
+            }
 
             if (dif < difference) {
                 difference = dif
