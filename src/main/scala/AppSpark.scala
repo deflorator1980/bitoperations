@@ -7,14 +7,15 @@ object AppSpark {
     def main(args: Array[String]) {
         val sc = new SparkContext(new SparkConf().setAppName("AppSpark").setMaster("local[4]"))
         val arrs = sc.textFile("arr.txt").flatMap(l => l.split(" "))
-        val arr = arrs.collect.map(n => n.toInt)
+        // val arr = arrs.collect.map(n => n.toInt)
+        val arrn = arrs.zipWithIndex.map(_.swap)
 
         val quantity = Integer.parseInt(args(0))
         val numberDec = BigDecimal(2).pow(quantity) - 1
         println(numberDec)
         var sum0, sum1 = 0
         // val arr = Array.fill(quantity){scala.util.Random.nextInt(10)}
-        arr.foreach({a => print(a + " ")})
+        // arr.foreach({a => print(a + " ")})
 
         var difference = Double.PositiveInfinity
 
@@ -25,11 +26,14 @@ object AppSpark {
         var nDec = BigInt(1)
         while(nDec <= numberDec.toBigInt ){
         //   for (nBin <- 0 until arr.length) {
-          for (nBin <- 0 until arrs.count.toInt) {
+        //   for (nBin <- 0 until arrs.count.toInt) {
+          for (nBin <- 0 until arrn.count.toInt) {
                 if (getBit(nDec, nBin) == 0) {
-                    sum0 += arr(nBin)
+                    // sum0 += arr(nBin)
+                    sum0 += arrn.lookup(nBin).map(_.toInt).lift(0).get
                 } else if (getBit(nDec, nBin) == 1) {
-                    sum1 += arr(nBin)
+                    // sum1 += arr(nBin)
+                    sum1 += arrn.lookup(nBin).map(_.toInt).lift(0).get
                 }
             }
 
@@ -58,3 +62,4 @@ object AppSpark {
 // arrs.count
 // $SPARK_HOME/bin/spark-submit --class "AppSpark" target/scala-2.11/appspark_2.11-1.0.jar 8
 // zipWithIndex.map(_.swap).lookup(14)
+// $SPARK_HOME/bin/spark-shell
