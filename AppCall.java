@@ -25,14 +25,23 @@ public class AppCall {
 
         ExecutorService exec = Executors.newFixedThreadPool(4);
 
+        long part = numberDec/4;
         // Callable<Integer> callable = new CallCount(arr, 1, numberDec);
-        Callable<Integer> callable = new CallCount(arr, 1, numberDec/2);
-        Callable<Integer> callable2 = new CallCount(arr, numberDec/2 + 1, numberDec);
+        // Callable<Integer> callable = new CallCount(arr, 1, numberDec/2);
+
+        Callable<Integer> callable = new CallCount(arr, 1, part);
+        Callable<Integer> callable2 = new CallCount(arr, part + 1, part * 2);
+        Callable<Integer> callable3 = new CallCount(arr, (part * 2) + 1, part * 3);
+        Callable<Integer> callable4 = new CallCount(arr, (part * 3) + 1, numberDec);
         Future<Integer> future = exec.submit(callable);
         Future<Integer> future2 = exec.submit(callable2);
+        Future<Integer> future3 = exec.submit(callable3);
+        Future<Integer> future4 = exec.submit(callable4);
         // diffenece = future.get();
         System.out.println(future.get());
         System.out.println(future2.get());
+        System.out.println(future3.get());
+        System.out.println(future4.get());
 
         System.out.println(new Date());
         exec.shutdown();
@@ -74,7 +83,8 @@ class CallCount implements Callable {
 
             if (dif < diffenece) {
             // if (dif > diffenece) {
-                System.out.println(Thread.currentThread().getName() + " " + dif);
+
+                // System.out.println(Thread.currentThread().getName() + " " + dif);
                 diffenece = dif;
             }
 
