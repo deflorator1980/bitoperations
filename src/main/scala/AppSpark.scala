@@ -22,7 +22,8 @@ object AppSpark {
 
         val start = Calendar.getInstance.getTime
         println("\n" + start)
-        scala.tools.nsc.io.File("result.txt").writeAll(start.toString + "\n")
+        scala.tools.nsc.io.File("result.txt").writeAll(numberDec.toBigInt + "\n")
+        scala.tools.nsc.io.File("result.txt").appendAll(start.toString + "\n")
         scala.tools.nsc.io.File("result.txt").appendAll(arr.mkString(" ") + "\n")
 
         // for (nDec <- 1 to numberDec) {
