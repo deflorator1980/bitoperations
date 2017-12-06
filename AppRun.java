@@ -6,8 +6,8 @@ import java.util.concurrent.Executors;
 
 public class AppRun {
     public static void main(String[] args) {
-        int quantity = Integer.parseInt(args[0]);
-        int[] arr = new int[quantity];
+        long quantity = Long.parseLong(args[0]);
+        long[] arr = new long[(int)quantity];
 
         ExecutorService exec = Executors.newFixedThreadPool(1);
         // exec.execute(new Counter(quantity, arr));
@@ -18,24 +18,24 @@ public class AppRun {
         
     }
 
-    public static int getBit(int n_dec, int n_bin) {
-        return (n_dec >> n_bin) & 1;
+    public static long getBit(long nDec, long nBin) {
+        return (nDec >> nBin) & 1;
     }
 }
 
 class Counter extends Thread {
-    private int quantity;
-    private int[] arr; 
-    Counter(int quantity, int arr[]) {
+    private long quantity;
+    private long[] arr; 
+    Counter(long quantity, long arr[]) {
         this.quantity = quantity;
         this.arr = arr;
     }
 
     public void run() {
 
-        int numberDec = (int)Math.pow(2, quantity) - 1;
+        long numberDec = (long)Math.pow(2, quantity) - 1;
         System.out.println(numberDec);
-        int sum0 = 0, sum1 = 0;
+        long sum0 = 0, sum1 = 0;
         for (int i = 0; i < quantity; i++) {
             arr[i] = new Random().nextInt(10);
         }
@@ -45,21 +45,21 @@ class Counter extends Thread {
             System.out.print(arr[i] + " ");
         }
 
-        int diffenece = Integer.MAX_VALUE;  
+        long diffenece = Long.MAX_VALUE;  
 
         System.out.println("\n" + new Date());
 
-        for (int n_dec = 1; n_dec <= numberDec; n_dec++) {
+        for (long nDec = 1; nDec <= numberDec; nDec++) {
 
-            for (int n_bin = 0; n_bin < arr.length; n_bin++) {
-                if (getBit(n_dec, n_bin) == 0) {
-                    sum0 += arr[n_bin];
-                } else if (getBit(n_dec, n_bin) == 1) {
-                    sum1 += arr[n_bin];
+            for (int nBin = 0; nBin < arr.length; nBin++) {
+                if (getBit(nDec, nBin) == 0) {
+                    sum0 += arr[nBin];
+                } else if (getBit(nDec, nBin) == 1) {
+                    sum1 += arr[nBin];
                 }
             }
 
-            int dif = Math.abs(sum1 - sum0);
+            long dif = Math.abs(sum1 - sum0);
 
             if (dif < diffenece) {
                 diffenece = dif;
@@ -71,7 +71,7 @@ class Counter extends Thread {
         System.out.println(new Date());
     }
 
-    public int getBit(int n_dec, int n_bin) {
-        return (n_dec >> n_bin) & 1;
+    public long getBit(long nDec, long nBin) {
+        return (nDec >> nBin) & 1;
     }
 }
