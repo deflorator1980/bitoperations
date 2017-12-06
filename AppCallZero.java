@@ -26,13 +26,13 @@ public class AppCallZero {
         ExecutorService exec = Executors.newFixedThreadPool(4);
 
         long part = numberDec/4;
-        // Callable<Integer> callable = new CallCount(arr, 1, numberDec);
-        // Callable<Integer> callable = new CallCount(arr, 1, numberDec/2);
+        // Callable<Integer> callable = new CallCountZero(arr, 1, numberDec);
+        // Callable<Integer> callable = new CallCountZero(arr, 1, numberDec/2);
 
-        Callable<Integer> callable = new CallCount(arr, 1, part);
-        Callable<Integer> callable2 = new CallCount(arr, part + 1, part * 2);
-        Callable<Integer> callable3 = new CallCount(arr, (part * 2) + 1, part * 3);
-        Callable<Integer> callable4 = new CallCount(arr, (part * 3) + 1, numberDec);
+        Callable<Integer> callable = new CallCountZero(arr, 1, part);
+        Callable<Integer> callable2 = new CallCountZero(arr, part + 1, part * 2);
+        Callable<Integer> callable3 = new CallCountZero(arr, (part * 2) + 1, part * 3);
+        Callable<Integer> callable4 = new CallCountZero(arr, (part * 3) + 1, numberDec);
         Future<Integer> future = exec.submit(callable);
         Future<Integer> future2 = exec.submit(callable2);
         Future<Integer> future3 = exec.submit(callable3);
@@ -50,7 +50,7 @@ public class AppCallZero {
 
 }
 
-class CallCount implements Callable {
+class CallCountZero implements Callable {
 
     private long numberDec;
     private long[] arr;
@@ -61,7 +61,7 @@ class CallCount implements Callable {
     private long start;
     private long stop;
 
-    public CallCount(long[] arr, long start, long stop) {
+    public CallCountZero(long[] arr, long start, long stop) {
         this.numberDec = numberDec;
         this.arr = arr;
         this.start = start;

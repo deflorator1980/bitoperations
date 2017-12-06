@@ -1,5 +1,5 @@
 import java.util.Date
-object AppS5 {
+object ScalaLong {
     def main(args: Array[String]) {
         val quantity = args(0).toInt
         val numberDec = Math.pow(2, quantity).toLong -1
