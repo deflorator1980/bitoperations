@@ -29,6 +29,9 @@ public class AppCall {
         // Callable<Integer> callable = new CallCount(arr, 1, numberDec);
         // Callable<Integer> callable = new CallCount(arr, 1, numberDec/2);
 
+        // Callable<Integer> callable = new CallCount(numberDec, arr);
+
+
         Callable<Integer> callable = new CallCount(arr, 1, part);
         Callable<Integer> callable2 = new CallCount(arr, part + 1, part * 2);
         Callable<Integer> callable3 = new CallCount(arr, (part * 2) + 1, part * 3);
@@ -78,6 +81,12 @@ class CallCount implements Callable {
             }
 
             long dif = Math.abs(sum1 - sum0);
+
+            // if(dif == 0) {
+            //     System.out.println("zero " + Thread.currentThread().getName());
+            //     System.out.println(new Date());
+            //     System.exit(0);
+            // }
 
             if (dif < diffenece) {
             // if (dif > diffenece) {

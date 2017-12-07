@@ -37,11 +37,9 @@ object AppS5 {
         println(difference)
         println(new Date)
     }
-    // def getBit (nDec: Int, nBin: Int) =  {
-    def getBit (nDec: BigInt, nBin: Int) =  {
+    
+    def getBit (nDec: Long, nBin: Int) =  {
         val x = (nDec >> nBin) & 1
         x
     }
 }
-
-// todo replace toBigInt to Long
