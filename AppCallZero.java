@@ -52,7 +52,6 @@ public class AppCallZero {
 
 class CallCountZero implements Callable {
 
-    private long numberDec;
     private long[] arr;
     private  long diffenece = Long.MAX_VALUE;
     // private  long diffenece = 0;
@@ -62,7 +61,6 @@ class CallCountZero implements Callable {
     private long stop;
 
     public CallCountZero(long[] arr, long start, long stop) {
-        this.numberDec = numberDec;
         this.arr = arr;
         this.start = start;
         this.stop = stop;

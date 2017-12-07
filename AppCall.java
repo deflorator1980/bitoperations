@@ -52,7 +52,6 @@ public class AppCall {
 
 class CallCount implements Callable {
 
-    private long numberDec;
     private long[] arr;
     private  long diffenece = Long.MAX_VALUE;
     // private  long diffenece = 0;
@@ -62,7 +61,6 @@ class CallCount implements Callable {
     private long stop;
 
     public CallCount(long[] arr, long start, long stop) {
-        this.numberDec = numberDec;
         this.arr = arr;
         this.start = start;
         this.stop = stop;
