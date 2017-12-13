@@ -46,11 +46,19 @@ public class AppCallMore {
         Future<Integer> future2 = exec.submit(callable2);
         Future<Integer> future3 = exec.submit(callable3);
         Future<Integer> future4 = exec.submit(callable4);
+        Future<Integer> future5 = exec.submit(callable5);
+        Future<Integer> future6 = exec.submit(callable6);
+        Future<Integer> future7 = exec.submit(callable7);
+        Future<Integer> future8 = exec.submit(callable8);
         // diffenece = future.get();
         System.out.println(future.get());
         System.out.println(future2.get());
         System.out.println(future3.get());
         System.out.println(future4.get());
+        System.out.println(future5.get());
+        System.out.println(future6.get());
+        System.out.println(future7.get());
+        System.out.println(future8.get());
 
         System.out.println(new Date());
         exec.shutdown();
