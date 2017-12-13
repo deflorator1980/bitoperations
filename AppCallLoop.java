@@ -23,7 +23,7 @@ public class AppCallLoop {
 
         int cores = Runtime.getRuntime().availableProcessors();
 
-//        cores = cores/2;
+//        cores = cores*2;
 
         System.out.println("\n" + new Date());
 
@@ -47,9 +47,6 @@ public class AppCallLoop {
         for (Future f : futures) {
             System.out.println(f.get());
         }
-
-
-
 
         System.out.println(new Date());
         exec.shutdown();
@@ -110,3 +107,4 @@ class CallCount implements Callable {
     }
 
 }
+//    javac AppCallLoop.java && java AppCallLoop 29
