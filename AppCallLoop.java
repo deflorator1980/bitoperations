@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.stream.IntStream;
 import java.util.Date;
@@ -22,6 +23,8 @@ public class AppCallLoop {
 
         int cores = Runtime.getRuntime().availableProcessors();
 
+//        cores = cores/2;
+
         System.out.println("\n" + new Date());
 
         ExecutorService exec = Executors.newFixedThreadPool(cores);
@@ -34,20 +37,22 @@ public class AppCallLoop {
 
         // Callable<Integer> callable = new CallCount(numberDec, arr);
 
-        List<Callble<Integer>> calls = new ArrayList<>();
+        List<Callable<Integer>> calls = new ArrayList<>();
         calls.add(new CallCount(arr, 1, part));
 
-        List<Future<Integer>> futures = new ArraysList<>();
+        List<Future<Integer>> futures = new ArrayList<>();
         futures.add(exec.submit(new CallCount(arr, 1, part)));
 
         if (cores > 1) {
             for (int i = 1; i < cores; i++ ){
-                futures.add(exec.submit(new CallCount(arr, part + i), part * (i + 1)));
+                futures.add(exec.submit(new CallCount(arr, part + i, part * (i + 1))));
             }
 
         }
 
-        futures.stream().forEach(f -> System.out.println(f.get()));
+        for (Future f : futures) {
+            System.out.println(f.get());
+        }
 
 
 
@@ -80,7 +85,7 @@ public class AppCallLoop {
 
         System.out.println(new Date());
         exec.shutdown();
-        
+
     }
 
 }
@@ -103,7 +108,7 @@ class CallCount implements Callable {
 
     public Integer call() {
         for (long nDec = start; nDec <= stop; nDec++) {
-            
+
             for (int nBin = 0; nBin < arr.length; nBin++) {
                 if (getBit(nDec, nBin) == 0) {
                     sum0 += arr[nBin];
@@ -121,7 +126,7 @@ class CallCount implements Callable {
             // }
 
             if (dif < diffenece) {
-            // if (dif > diffenece) {
+                // if (dif > diffenece) {
 
                 // System.out.println(Thread.currentThread().getName() + " " + dif);
                 diffenece = dif;

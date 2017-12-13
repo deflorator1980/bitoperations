@@ -23,6 +23,8 @@ public class AppCallLoop {
 
         int cores = Runtime.getRuntime().availableProcessors();
 
+        cores = cores/2;
+
         System.out.println("\n" + new Date());
 
         ExecutorService exec = Executors.newFixedThreadPool(cores);
@@ -43,7 +45,7 @@ public class AppCallLoop {
 
         if (cores > 1) {
             for (int i = 1; i < cores; i++ ){
-                futures.add(exec.submit(new CallCount(arr, part + i, part * (i + 1))));
+                futures.add(exec.submit(new CallCount(arr, (part * i) + 1 , part * (i + 1))));
             }
 
         }
