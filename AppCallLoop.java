@@ -29,13 +29,7 @@ public class AppCallLoop {
 
         ExecutorService exec = Executors.newFixedThreadPool(cores);
 
-        // long part = numberDec/4;
         long part = numberDec/cores;
-
-        // Callable<Integer> callable = new CallCount(arr, 1, numberDec);
-        // Callable<Integer> callable = new CallCount(arr, 1, numberDec/2);
-
-        // Callable<Integer> callable = new CallCount(numberDec, arr);
 
         List<Callable<Integer>> calls = new ArrayList<>();
         calls.add(new CallCount(arr, 1, part));
@@ -45,7 +39,7 @@ public class AppCallLoop {
 
         if (cores > 1) {
             for (int i = 1; i < cores; i++ ){
-                futures.add(exec.submit(new CallCount(arr, part + i, part * (i + 1))));
+                futures.add(exec.submit(new CallCount(arr, (part * i) + 1 , part * (i + 1))));
             }
 
         }
@@ -56,32 +50,6 @@ public class AppCallLoop {
 
 
 
-        // Callable<Integer> callable = new CallCount(arr, 1, part);
-        // Callable<Integer> callable2 = new CallCount(arr, part + 1, part * 2);
-        // Callable<Integer> callable3 = new CallCount(arr, (part * 2) + 1, part * 3);
-        // Callable<Integer> callable4 = new CallCount(arr, (part * 3) + 1, part * 4);
-        // Callable<Integer> callable5 = new CallCount(arr, (part * 4) + 1, part * 5);
-        // Callable<Integer> callable6 = new CallCount(arr, (part * 5) + 1, part * 6);
-        // Callable<Integer> callable7 = new CallCount(arr, (part * 6) + 1, part * 7);
-        // Callable<Integer> callable8 = new CallCount(arr, (part * 7) + 1, numberDec);
-        // Future<Integer> future = exec.submit(callable);
-        // Future<Integer> future2 = exec.submit(callable2);
-        // Future<Integer> future3 = exec.submit(callable3);
-        // Future<Integer> future4 = exec.submit(callable4);
-        // Future<Integer> future5 = exec.submit(callable5);
-        // Future<Integer> future6 = exec.submit(callable6);
-        // Future<Integer> future7 = exec.submit(callable7);
-        // Future<Integer> future8 = exec.submit(callable8);
-        // // diffenece = future.get();
-
-        // System.out.println(future.get());
-        // System.out.println(future2.get());
-        // System.out.println(future3.get());
-        // System.out.println(future4.get());
-        // System.out.println(future5.get());
-        // System.out.println(future6.get());
-        // System.out.println(future7.get());
-        // System.out.println(future8.get());
 
         System.out.println(new Date());
         exec.shutdown();
@@ -142,5 +110,3 @@ class CallCount implements Callable {
     }
 
 }
-
-// Runtime.getRuntime().availableProcessors();

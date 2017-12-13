@@ -23,7 +23,7 @@ public class AppCallLoop {
 
         int cores = Runtime.getRuntime().availableProcessors();
 
-        cores = cores/2;
+//        cores = cores*2;
 
         System.out.println("\n" + new Date());
 
