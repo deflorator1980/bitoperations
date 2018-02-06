@@ -6,6 +6,11 @@ import java.util.List;
 import java.util.concurrent.*;
 
 public class AppCallLoop {
+    /**
+     * 28 -- pretty quick
+     * @param args
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         long quantity = Long.parseLong(args[0]);
         long[] arr = new long[(int)quantity];
