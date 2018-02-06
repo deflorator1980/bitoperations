@@ -21,8 +21,8 @@ public class AppCallLoop {
             arr[i] = new Random().nextInt(10);
         }
 
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
+        for (long anArr : arr) {
+            System.out.print(anArr + " ");
         }
 
         int cores = Runtime.getRuntime().availableProcessors();

@@ -12,11 +12,8 @@ public class AppKnapSack {
             arr[i] = new Random().nextInt(10);
         }
 
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
+        Arrays.stream(arr).forEach(value -> System.out.print(value + " "));
         System.out.println();
-
         long val[] = arr;
         long wt[] = arr;
         int sum = (int) Arrays.stream(arr).reduce(0, Long::sum);
