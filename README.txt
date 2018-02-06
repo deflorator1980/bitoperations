@@ -8,5 +8,6 @@
 
     б) Аглоритмом "задачи о рюкзаке"
     AppKnapSack.java
+    KnapSack.scala (echo 3 | sbt "run 4")
     Сложность O(N)
 

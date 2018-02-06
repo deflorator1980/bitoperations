@@ -15,3 +15,6 @@ out/*
 project/
 *.log
 metastore_db/
+.gradle/
+build/
+gradle/
